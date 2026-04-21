@@ -1,0 +1,93 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-low);
+  padding: 2rem;
+}
+
+.auth-container {
+  background: var(--surface-lowest);
+  width: 100%;
+  max-width: 500px;
+  padding: 4rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-ambient);
+  animation: fadeInUp 0.8s forwards;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.auth-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.auth-subtitle {
+  color: var(--on-surface-variant);
+  font-size: 0.95rem;
+}
+
+/* Password Strength Bar */
+.password-strength-container {
+  margin-top: 0.5rem;
+}
+
+.strength-bar {
+  height: 4px;
+  width: 100%;
+  background: #eee;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.strength-progress {
+  height: 100%;
+  width: 0%;
+  transition: var(--transition);
+}
+
+.strength-text {
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Colors for strength */
+.strength-0 .strength-progress {
+  width: 5%;
+  background: #ddd;
+}
+.strength-1 .strength-progress {
+  width: 25%;
+  background: var(--error);
+}
+.strength-2 .strength-progress {
+  width: 50%;
+  background: #e67e22;
+}
+.strength-3 .strength-progress {
+  width: 75%;
+  background: #f1c40f;
+}
+.strength-4 .strength-progress {
+  width: 100%;
+  background: var(--success);
+}
+
+.auth-footer {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.auth-footer a {
+  color: var(--primary);
+  font-weight: 600;
+}

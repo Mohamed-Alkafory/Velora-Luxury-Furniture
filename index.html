@@ -3,7 +3,289 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Velora Luxury Furniture | The Curated Atelier</title>
+    <meta
+      name="description"
+      content="Discover premium, handcrafted furniture for modern living. Explore our curated collections of living room, bedroom, and dining furniture."
+    />
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
-  <body></body>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <svg
+            class="logo-mark"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient
+                id="logo-grad"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color:#c8a46b;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#e7c185;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#a6854f;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M20 20 H40 V24 H20 V20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M60 20 H80 V24 H60 V20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z"
+              fill="url(#logo-grad)"
+            />
+          </svg>
+          <div class="logo-text">VELORA</div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="#categories" class="nav-link">Collections</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="order.html" class="nav-link">Order Now</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a
+            href="signin.html"
+            class="btn btn-outline"
+            style="padding: 0.5rem 1.5rem"
+            >Sign In</a
+          >
+          <a
+            href="signup.html"
+            class="btn btn-primary"
+            style="padding: 0.5rem 1.5rem"
+            >Join Us</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="container">
+        <div class="hero-content animate-fade-up">
+          <span class="hero-label">Exclusively Handcrafted</span>
+          <h1 class="hero-title">The Art of Fine Living.</h1>
+          <p class="hero-text">
+            Experience a new standard of comfort with our curated atelier of
+            luxury furniture. Designed for those who appreciate the
+            extraordinary.
+          </p>
+          <div class="hero-btns">
+            <a href="#featured" class="btn btn-primary">Shop Collection</a>
+            <a
+              href="contact.html"
+              class="btn btn-outline"
+              style="
+                margin-left: 1rem;
+                color: #fff;
+                border-color: rgba(255, 255, 255, 0.3);
+              "
+              >Contact Us</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <span class="section-label">Curated Collections</span>
+          <h2 class="section-title">Shop by Category</h2>
+        </div>
+        <div class="category-grid" id="category-grid">
+          <!-- Categories will be injected by JS or hardcoded for SEO -->
+          <div class="category-card animate-fade-up delay-100">
+            <img
+              src="assets/catLiving.jpg"
+              alt="Living Room"
+              class="category-bg"
+            />
+            <div class="category-overlay">
+              <h3 class="category-name">Living Room</h3>
+              <p class="category-count">12 Items</p>
+            </div>
+          </div>
+          <div class="category-card animate-fade-up delay-200">
+            <img
+              src="assets/catDining.jpg"
+              alt="Dining Room"
+              class="category-bg"
+            />
+            <div class="category-overlay">
+              <h3 class="category-name">Dining Room</h3>
+              <p class="category-count">8 Items</p>
+            </div>
+          </div>
+          <div class="category-card animate-fade-up delay-300" id="cat-bedroom">
+            <img
+              src="assets/catBedroom.jpg"
+              alt="Bedroom"
+              class="category-bg"
+            />
+            <div class="category-overlay">
+              <h3 class="category-name">Bedroom</h3>
+              <p class="category-count">15 Items</p>
+            </div>
+          </div>
+          <div class="category-card animate-fade-up delay-400">
+            <img
+              src="assets/catHomeOffice.jpg"
+              alt="Home Office"
+              class="category-bg"
+            />
+            <div class="category-overlay">
+              <h3 class="category-name">Home Office</h3>
+              <p class="category-count">6 Items</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products" id="featured">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <span class="section-label">Trending Now</span>
+          <h2 class="section-title">Our Featured Pieces</h2>
+        </div>
+        <div class="product-grid" id="featured-product-grid">
+          <!-- Products will be injected by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="footer-logo">
+              <svg
+                class="logo-mark"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="width: 40px; height: 40px; margin-bottom: 1.5rem"
+              >
+                <path
+                  d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z"
+                  fill="#c8a46b"
+                />
+                <path
+                  d="M20 20 H40 V24 H20 V20Z"
+                  fill="#c8a46b"
+                />
+                <path
+                  d="M60 20 H80 V24 H60 V20Z"
+                  fill="#c8a46b"
+                />
+                <path
+                  d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z"
+                  fill="#c8a46b"
+                />
+                <path
+                  d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z"
+                  fill="#c8a46b"
+                />
+                <path
+                  d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z"
+                  fill="#c8a46b"
+                />
+              </svg>
+              <div>VELORA</div>
+            </div>
+            <p class="footer-text">
+              Elevating your living space with timeless design and unrivaled
+              craftsmanship since 1994.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Company</h4>
+            <ul class="footer-links">
+              <li><a href="#">Our Story</a></li>
+              <li><a href="#">Designers</a></li>
+              <li><a href="#">Craftsmanship</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Shop</h4>
+            <ul class="footer-links">
+              <li><a href="#">Living Room</a></li>
+              <li><a href="#">Dining Room</a></li>
+              <li><a href="#">Bedroom</a></li>
+              <li><a href="#">Office</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Join the Atelier</h4>
+            <p class="footer-text">
+              Subscribe to receive exclusive offers and design inspiration.
+            </p>
+            <form style="display: flex; gap: 0.5rem">
+              <input
+                type="email"
+                class="form-input"
+                placeholder="Your Email"
+                style="background: #333; color: #fff"
+              />
+              <button class="btn btn-primary" style="padding: 0.5rem 1rem">
+                Join
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Velora Luxury Furniture. All rights reserved.</p>
+          <div class="footer-socials">
+            <a href="#">Instagram</a> / <a href="#">Pinterest</a> /
+            <a href="#">Twitter</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+      import { products } from "./js/products.js";
+      import { renderProducts } from "./js/main.js";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        renderProducts(products, "featured-product-grid");
+      });
+    </script>
+    <script type="module" src="js/main.js"></script>
+  </body>
 </html>

@@ -1,0 +1,109 @@
+/* Pages Common Header */
+.page-hero {
+  padding: 12rem 0 6rem;
+  background: var(--surface-low);
+  text-align: center;
+}
+
+.page-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  color: var(--on-surface-variant);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Contact Page Styles */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  padding: 10rem 0;
+}
+
+.contact-info-item {
+  margin-bottom: 3rem;
+}
+
+.contact-info-label {
+  display: block;
+  color: var(--primary);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.contact-info-value {
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+}
+
+/* Order Page (Checkout) Styles */
+.checkout-container {
+  padding: 8rem 0;
+  max-width: 900px;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 4rem;
+}
+
+.checkout-card {
+  background: var(--surface-lowest);
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+.summary-product-visual {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-card {
+  background: var(--on-surface);
+  color: var(--surface);
+  padding: 3rem;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #333;
+}
+
+.summary-total {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-success {
+  text-align: center;
+  padding: 10rem 0;
+}
+
+.success-icon {
+  font-size: 5rem;
+  color: var(--success);
+  margin-bottom: 2rem;
+  display: block;
+}

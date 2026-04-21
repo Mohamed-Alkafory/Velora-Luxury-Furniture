@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Velora Luxury Furniture</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <svg
+            class="logo-mark"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient
+                id="logo-grad"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color:#c8a46b;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#e7c185;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#a6854f;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M20 20 H40 V24 H20 V20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M60 20 H80 V24 H60 V20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z"
+              fill="url(#logo-grad)"
+            />
+          </svg>
+          <div class="logo-text">VELORA</div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li>
+            <a href="index.html#categories" class="nav-link">Collections</a>
+          </li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+          <li><a href="order.html" class="nav-link">Order Now</a></li>
+        </ul>
+        <div class="nav-actions" id="nav-actions">
+          <a
+            href="signin.html"
+            class="btn btn-outline"
+            style="padding: 0.5rem 1.5rem"
+            >Sign In</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-hero">
+      <div class="container animate-fade-up">
+        <h1 class="page-title">Contact Us</h1>
+        <p class="page-subtitle">
+          We are here to assist you in creating your perfect space. Reach out to
+          our design consultants today.
+        </p>
+      </div>
+    </header>
+
+    <section class="container">
+      <div class="contact-grid">
+        <div class="contact-info animate-fade-up">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Main Atelier</span>
+            <p class="contact-info-value">
+              124 Fifth Avenue, New York, NY 10011
+            </p>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">General Inquiries</span>
+            <p class="contact-info-value">inquiries@velora.com</p>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Design Support</span>
+            <p class="contact-info-value">+1 (212) 555-0198</p>
+          </div>
+        </div>
+
+        <div
+          class="contact-form-container animate-fade-up"
+          style="animation-delay: 0.2s"
+        >
+          <form id="contact-form">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input
+                type="text"
+                class="form-input"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input
+                type="email"
+                class="form-input"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea
+                class="form-input"
+                rows="6"
+                placeholder="Tell us about your project..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer same as index -->
+    <footer style="margin-top: 5rem">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>&copy; 2026 Velora Luxury Furniture. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { showToast } from "./js/main.js";
+
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          showToast(
+            "Message sent successfully! Our team will contact you soon.",
+            "success",
+          );
+          e.target.reset();
+        });
+    </script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

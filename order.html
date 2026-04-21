@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Velora Luxury Furniture</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <svg
+            class="logo-mark"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient
+                id="logo-grad"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color:#c8a46b;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#e7c185;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#a6854f;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M20 20 H40 V24 H20 V20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M60 20 H80 V24 H60 V20Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z"
+              fill="url(#logo-grad)"
+            />
+            <path
+              d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z"
+              fill="url(#logo-grad)"
+            />
+          </svg>
+          <div class="logo-text">VELORA</div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li>
+            <a href="index.html#categories" class="nav-link">Collections</a>
+          </li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="order.html" class="nav-link active">Order Now</a></li>
+        </ul>
+        <div class="nav-actions" id="nav-actions">
+          <!-- User name/logout will be injected by main.js -->
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-hero">
+      <div class="container animate-fade-up">
+        <h1 class="page-title">Secure Checkout</h1>
+        <p class="page-subtitle">
+          Complete your purchase and bring timeless luxury to your home.
+        </p>
+      </div>
+    </header>
+
+    <section class="container" style="display: flex; justify-content: center">
+      <div class="checkout-container animate-fade-up" id="checkout-view">
+        <div class="checkout-grid">
+          <div class="checkout-main">
+            <div class="checkout-card">
+              <h3 class="serif" style="margin-bottom: 2rem">Shipping Details</h3>
+              <form id="order-form">
+                <div class="form-group">
+                  <label class="form-label">Shipping Address</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="Street address"
+                    required
+                  />
+                </div>
+                <div
+                  style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem"
+                >
+                  <div class="form-group">
+                    <label class="form-label">City</label>
+                    <input
+                      type="text"
+                      class="form-input"
+                      placeholder="New York"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Zip Code</label>
+                    <input
+                      type="text"
+                      class="form-input"
+                      placeholder="10011"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <h3 class="serif" style="margin: 3rem 0 2rem">Payment Method</h3>
+                <div class="form-group">
+                  <label class="form-label">Card Number</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="•••• •••• •••• ••••"
+                    required
+                  />
+                </div>
+                <div
+                  style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem"
+                >
+                  <div class="form-group">
+                    <label class="form-label">Expiry Date</label>
+                    <input
+                      type="text"
+                      class="form-input"
+                      placeholder="MM/YY"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">CVC</label>
+                    <input
+                      type="password"
+                      class="form-input"
+                      placeholder="•••"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="width: 100%; margin-top: 2rem"
+                >
+                  Place Order Now
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="checkout-summary">
+            <div class="summary-card">
+              <h3 class="serif" style="margin-bottom: 2rem">Order Summary</h3>
+              <!-- Content injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="success-view" class="order-success" style="display: none">
+        <span class="success-icon">✓</span>
+        <h2 class="page-title">Order Received!</h2>
+        <p class="page-subtitle">
+          Thank you for your purchase. We are preparing your pieces for their
+          new home. You will receive an email confirmation shortly.
+        </p>
+        <a href="index.html" class="btn btn-primary" style="margin-top: 3rem"
+          >Return Home</a
+        >
+      </div>
+    </section>
+
+    <footer style="margin-top: 5rem">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>&copy; 2026 Velora Luxury Furniture. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { showToast } from "./js/main.js";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const currentOrder = JSON.parse(localStorage.getItem("currentOrder"));
+        const summaryContainer = document.querySelector(".summary-card");
+
+        if (currentOrder && summaryContainer) {
+          const tax = currentOrder.price * 0.08;
+          const total = currentOrder.price + tax;
+
+          summaryContainer.innerHTML = `
+            <img src="${currentOrder.image}" alt="${currentOrder.name}" class="summary-product-visual">
+            <h3 class="serif" style="margin-bottom: 2rem">Order Summary</h3>
+            <div class="summary-item">
+              <span>${currentOrder.name}</span>
+              <span>$${currentOrder.price.toLocaleString()}</span>
+            </div>
+            <div class="summary-item">
+              <span>Shipping</span>
+              <span>$0</span>
+            </div>
+            <div class="summary-item" style="border-bottom: none">
+              <span>Tax (8%)</span>
+              <span>$${tax.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            </div>
+            <div class="summary-total">
+              <span>Total</span>
+              <span>$${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            </div>
+          `;
+        } else if (!currentOrder) {
+          // If somehow they got here without an order, redirect home
+          window.location.href = "index.html";
+        }
+      });
+
+      document.getElementById("order-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        localStorage.removeItem("currentOrder"); // Clear order on success
+        document.getElementById("checkout-view").style.display = "none";
+        document.getElementById("success-view").style.display = "block";
+        showToast("Order placed successfully!", "success");
+      });
+    </script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
