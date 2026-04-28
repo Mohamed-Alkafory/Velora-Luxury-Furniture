@@ -117,10 +117,15 @@ img {
   font-family: var(--font-heading);
   font-size: 1.6rem;
   font-weight: 300;
-  letter-spacing: 0.6rem;
+  letter-spacing: 0.3rem;
   color: var(--on-surface);
   line-height: 1;
   text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.logo:hover .logo-text {
+  color: var(--primary);
 }
 
 .logo-text span {
@@ -136,33 +141,93 @@ img {
   gap: 3rem;
 }
 
+.nav-links li {
+  animation: navItemFade 0.6s ease forwards;
+  opacity: 0;
+}
+
+.nav-links li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.nav-links li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.nav-links li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.nav-links li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes navItemFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .nav-link {
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   position: relative;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: inherit;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: var(--transition);
+  opacity: 0.8;
+}
+
+.nav-link:hover {
+  opacity: 1;
 }
 
 .nav-link::after {
   content: "";
   position: absolute;
-  bottom: -5px;
-  left: 0;
+  bottom: -4px;
+  left: 50%;
   width: 0;
-  height: 2px;
+  height: 1px;
   background: var(--primary);
   transition: var(--transition);
+  transform: translateX(-50%);
 }
 
 .nav-link:hover::after {
   width: 100%;
 }
 
+/* Dim other links when one is hovered */
+.nav-links:hover .nav-link:not(:hover) {
+  opacity: 0.4;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
+}
+
+.nav-icon-link {
+  color: inherit;
+  opacity: 0.8;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon-link:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
 }
 
 /* Buttons */
@@ -285,6 +350,15 @@ footer {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   color: #fff;
+  letter-spacing: 0.3rem;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo:hover {
+  color: var(--primary);
 }
 
 .footer-logo span {
@@ -367,4 +441,67 @@ footer {
 }
 .delay-500 {
   transition-delay: 0.5s;
+}
+
+/* Page Specific & Utility Classes */
+.nav-btn {
+  padding: 0.5rem 1.5rem;
+}
+
+.footer-logo-mark {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-input {
+  background: #333;
+  color: #fff;
+}
+
+.newsletter-btn {
+  padding: 0.5rem 1rem;
+}
+
+/* Common Utilities */
+.w-full {
+  width: 100%;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.no-display {
+  display: none !important;
+}
+
+.border-none {
+  border: none !important;
 }

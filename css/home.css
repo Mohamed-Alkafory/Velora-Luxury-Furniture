@@ -235,3 +235,14 @@
     grid-template-columns: 1fr;
   }
 }
+
+.hero-contact-btn {
+  margin-left: 1rem;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.product-card {
+  transition: var(--transition);
+  transition-delay: var(--delay, 0s);
+}

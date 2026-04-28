@@ -1,6 +1,19 @@
 import auth from "./auth.js";
+import { logoSVG } from "./components.js";
 
 // --- Shared Components ---
+
+/**
+ * Inject Logo SVG into all containers
+ */
+const injectLogos = () => {
+  document.querySelectorAll(".logo").forEach((logo) => {
+    // Only inject if it's empty or doesn't have the svg
+    if (!logo.querySelector("svg")) {
+      logo.insertAdjacentHTML("afterbegin", logoSVG);
+    }
+  });
+};
 
 /**
  * Initialize navbar behavior (scroll effect and auth status)
@@ -24,7 +37,7 @@ const initNavbar = () => {
   if (user && navActions) {
     navActions.innerHTML = `
       <span class="user-greeting">Hello, <strong>${user.name.split(" ")[0]}</strong></span>
-      <button class="btn btn-outline" id="logout-btn" style="padding: 0.5rem 1rem">Logout</button>
+      <button class="btn btn-outline nav-btn" id="logout-btn">Logout</button>
     `;
     document.getElementById("logout-btn")?.addEventListener("click", auth.logout);
   }
@@ -115,7 +128,7 @@ const renderProducts = (productArray, containerId) => {
     .map((product, index) => {
       const delay = (index % 3) * 0.1;
       return `
-      <div class="product-card animate-fade-up" style="transition-delay: ${delay}s">
+      <div class="product-card animate-fade-up" style="--delay: ${delay}s">
         <div class="product-image">
           <img src="${product.image}" alt="${product.name}">
           <button class="add-to-cart-btn order-now-btn" data-product-id="${product.id}">Order Now</button>
@@ -153,6 +166,7 @@ const renderProducts = (productArray, containerId) => {
 // --- Initialization ---
 
 document.addEventListener("DOMContentLoaded", () => {
+  injectLogos();
   initNavbar();
   checkAuthProtection();
   scrollObserver.init();

@@ -11,55 +11,7 @@
   <body class="auth-page">
     <div class="auth-container">
       <div class="auth-header">
-        <a
-          href="index.html"
-          class="logo"
-          style="display: flex; margin-bottom: 2rem; justify-content: center"
-        >
-          <svg
-            class="logo-mark"
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient
-                id="logo-grad"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" style="stop-color:#c8a46b;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#e7c185;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#a6854f;stop-opacity:1" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M20 20 H40 V24 H20 V20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M60 20 H80 V24 H60 V20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z"
-              fill="url(#logo-grad)"
-            />
-          </svg>
+        <a href="index.html" class="logo auth-logo">
           <div class="logo-text">VELORA</div>
         </a>
         <h1 class="auth-title">Welcome Back</h1>
@@ -87,11 +39,7 @@
             required
           />
         </div>
-        <button
-          type="submit"
-          class="btn btn-primary"
-          style="width: 100%; margin-top: 1rem"
-        >
+        <button type="submit" class="btn btn-primary w-full mt-1">
           Sign In
         </button>
       </form>
@@ -101,30 +49,7 @@
       </div>
     </div>
 
-    <script type="module">
-      import auth from "./js/auth.js";
-      import { showToast } from "./js/main.js";
-
-      const signinForm = document.getElementById("signin-form");
-
-      signinForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        const result = auth.login(email, password);
-        if (result.success) {
-          showToast(result.message, "success");
-
-          // Get redirect parameter
-          const urlParams = new URLSearchParams(window.location.search);
-          const redirect = urlParams.get("redirect") || "index.html";
-
-          setTimeout(() => (window.location.href = redirect), 1200);
-        } else {
-          showToast(result.message, "error");
-        }
-      });
-    </script>
+    <script type="module" src="js/signin.js"></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
