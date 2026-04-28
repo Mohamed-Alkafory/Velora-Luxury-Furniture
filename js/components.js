@@ -1,0 +1,17 @@
+export const logoSVG = `
+  <svg class="logo-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color: #c8a46b; stop-opacity: 1" />
+        <stop offset="50%" style="stop-color: #e7c185; stop-opacity: 1" />
+        <stop offset="100%" style="stop-color: #a6854f; stop-opacity: 1" />
+      </linearGradient>
+    </defs>
+    <path d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z" fill="url(#logo-grad)" />
+    <path d="M20 20 H40 V24 H20 V20Z" fill="url(#logo-grad)" />
+    <path d="M60 20 H80 V24 H60 V20Z" fill="url(#logo-grad)" />
+    <path d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z" fill="url(#logo-grad)" />
+    <path d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z" fill="url(#logo-grad)" />
+    <path d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z" fill="url(#logo-grad)" />
+  </svg>
+`;

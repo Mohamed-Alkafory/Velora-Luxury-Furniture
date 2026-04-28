@@ -25,6 +25,10 @@
   padding: 10rem 0;
 }
 
+.contact-form-delay {
+  animation-delay: 0.2s;
+}
+
 .contact-info-item {
   margin-bottom: 3rem;
 }
@@ -61,6 +65,16 @@
   padding: 3rem;
   border-radius: 8px;
   box-shadow: var(--shadow-soft);
+}
+
+.checkout-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.checkout-payment-title {
+  margin: 3rem 0 2rem;
 }
 
 .summary-product-visual {

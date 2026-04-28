@@ -19,50 +19,6 @@
     <nav class="navbar">
       <div class="container">
         <a href="index.html" class="logo">
-          <svg
-            class="logo-mark"
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient
-                id="logo-grad"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" style="stop-color:#c8a46b;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#e7c185;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#a6854f;stop-opacity:1" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M20 20 H40 V24 H20 V20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M60 20 H80 V24 H60 V20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z"
-              fill="url(#logo-grad)"
-            />
-          </svg>
           <div class="logo-text">VELORA</div>
         </a>
         <ul class="nav-links">
@@ -72,18 +28,35 @@
           <li><a href="order.html" class="nav-link">Order Now</a></li>
         </ul>
         <div class="nav-actions">
-          <a
-            href="signin.html"
-            class="btn btn-outline"
-            style="padding: 0.5rem 1.5rem"
-            >Sign In</a
-          >
-          <a
-            href="signup.html"
-            class="btn btn-primary"
-            style="padding: 0.5rem 1.5rem"
-            >Join Us</a
-          >
+          <a href="order.html" class="nav-icon-link">
+            <svg
+              class="nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M3 6H21"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a href="signin.html" class="btn btn-outline nav-btn">Sign In</a>
+          <a href="signup.html" class="btn btn-primary nav-btn">Join Us</a>
         </div>
       </div>
     </nav>
@@ -101,14 +74,7 @@
           </p>
           <div class="hero-btns">
             <a href="#featured" class="btn btn-primary">Shop Collection</a>
-            <a
-              href="contact.html"
-              class="btn btn-outline"
-              style="
-                margin-left: 1rem;
-                color: #fff;
-                border-color: rgba(255, 255, 255, 0.3);
-              "
+            <a href="contact.html" class="btn btn-outline hero-contact-btn"
               >Contact Us</a
             >
           </div>
@@ -191,39 +157,7 @@
       <div class="container">
         <div class="footer-grid">
           <div class="footer-col">
-            <div class="footer-logo">
-              <svg
-                class="logo-mark"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                style="width: 40px; height: 40px; margin-bottom: 1.5rem"
-              >
-                <path
-                  d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z"
-                  fill="#c8a46b"
-                />
-                <path
-                  d="M20 20 H40 V24 H20 V20Z"
-                  fill="#c8a46b"
-                />
-                <path
-                  d="M60 20 H80 V24 H60 V20Z"
-                  fill="#c8a46b"
-                />
-                <path
-                  d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z"
-                  fill="#c8a46b"
-                />
-                <path
-                  d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z"
-                  fill="#c8a46b"
-                />
-                <path
-                  d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z"
-                  fill="#c8a46b"
-                />
-              </svg>
+            <div class="logo">
               <div>VELORA</div>
             </div>
             <p class="footer-text">
@@ -254,16 +188,13 @@
             <p class="footer-text">
               Subscribe to receive exclusive offers and design inspiration.
             </p>
-            <form style="display: flex; gap: 0.5rem">
+            <form class="footer-newsletter-form">
               <input
                 type="email"
-                class="form-input"
+                class="form-input newsletter-input"
                 placeholder="Your Email"
-                style="background: #333; color: #fff"
               />
-              <button class="btn btn-primary" style="padding: 0.5rem 1rem">
-                Join
-              </button>
+              <button class="btn btn-primary newsletter-btn">Join</button>
             </form>
           </div>
         </div>
@@ -278,14 +209,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script type="module">
-      import { products } from "./js/products.js";
-      import { renderProducts } from "./js/main.js";
-
-      document.addEventListener("DOMContentLoaded", () => {
-        renderProducts(products, "featured-product-grid");
-      });
-    </script>
+    <script type="module" src="js/home.js"></script>
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

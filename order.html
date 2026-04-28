@@ -13,50 +13,6 @@
     <nav class="navbar scrolled">
       <div class="container">
         <a href="index.html" class="logo">
-          <svg
-            class="logo-mark"
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient
-                id="logo-grad"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" style="stop-color:#c8a46b;stop-opacity:1" />
-                <stop offset="50%" style="stop-color:#e7c185;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#a6854f;stop-opacity:1" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M25 20 H35 L50 80 L65 20 H75 L50 90 L25 20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M20 20 H40 V24 H20 V20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M60 20 H80 V24 H60 V20Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M68 22 C75 15, 85 18, 92 12 Q85 25, 70 28 Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M72 28 C80 22, 90 25, 95 20 Q88 32, 74 34 Z"
-              fill="url(#logo-grad)"
-            />
-            <path
-              d="M75 34 C82 28, 92 31, 97 26 Q90 38, 77 40 Z"
-              fill="url(#logo-grad)"
-            />
-          </svg>
           <div class="logo-text">VELORA</div>
         </a>
         <ul class="nav-links">
@@ -67,8 +23,35 @@
           <li><a href="contact.html" class="nav-link">Contact</a></li>
           <li><a href="order.html" class="nav-link active">Order Now</a></li>
         </ul>
-        <div class="nav-actions" id="nav-actions">
-          <!-- User name/logout will be injected by main.js -->
+        <div class="nav-actions">
+          <a href="order.html" class="nav-icon-link">
+            <svg
+              class="nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M3 6H21"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a href="signin.html" class="btn btn-outline nav-btn">Sign In</a>
         </div>
       </div>
     </nav>
@@ -82,12 +65,12 @@
       </div>
     </header>
 
-    <section class="container" style="display: flex; justify-content: center">
+    <section class="container flex-center">
       <div class="checkout-container animate-fade-up" id="checkout-view">
         <div class="checkout-grid">
           <div class="checkout-main">
             <div class="checkout-card">
-              <h3 class="serif" style="margin-bottom: 2rem">Shipping Details</h3>
+              <h3 class="serif mb-2">Shipping Details</h3>
               <form id="order-form">
                 <div class="form-group">
                   <label class="form-label">Shipping Address</label>
@@ -98,9 +81,7 @@
                     required
                   />
                 </div>
-                <div
-                  style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem"
-                >
+                <div class="checkout-form-row">
                   <div class="form-group">
                     <label class="form-label">City</label>
                     <input
@@ -121,7 +102,7 @@
                   </div>
                 </div>
 
-                <h3 class="serif" style="margin: 3rem 0 2rem">Payment Method</h3>
+                <h3 class="serif checkout-payment-title">Payment Method</h3>
                 <div class="form-group">
                   <label class="form-label">Card Number</label>
                   <input
@@ -131,9 +112,7 @@
                     required
                   />
                 </div>
-                <div
-                  style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem"
-                >
+                <div class="checkout-form-row">
                   <div class="form-group">
                     <label class="form-label">Expiry Date</label>
                     <input
@@ -154,11 +133,7 @@
                   </div>
                 </div>
 
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  style="width: 100%; margin-top: 2rem"
-                >
+                <button type="submit" class="btn btn-primary w-full mt-2">
                   Place Order Now
                 </button>
               </form>
@@ -167,27 +142,25 @@
 
           <div class="checkout-summary">
             <div class="summary-card">
-              <h3 class="serif" style="margin-bottom: 2rem">Order Summary</h3>
+              <h3 class="serif mb-2">Order Summary</h3>
               <!-- Content injected by JS -->
             </div>
           </div>
         </div>
       </div>
 
-      <div id="success-view" class="order-success" style="display: none">
+      <div id="success-view" class="order-success no-display">
         <span class="success-icon">✓</span>
         <h2 class="page-title">Order Received!</h2>
         <p class="page-subtitle">
           Thank you for your purchase. We are preparing your pieces for their
           new home. You will receive an email confirmation shortly.
         </p>
-        <a href="index.html" class="btn btn-primary" style="margin-top: 3rem"
-          >Return Home</a
-        >
+        <a href="index.html" class="btn btn-primary mt-3">Return Home</a>
       </div>
     </section>
 
-    <footer style="margin-top: 5rem">
+    <footer class="mt-5">
       <div class="container">
         <div class="footer-bottom">
           <p>&copy; 2026 Velora Luxury Furniture. All rights reserved.</p>
@@ -195,51 +168,8 @@
       </div>
     </footer>
 
-    <script type="module">
-      import { showToast } from "./js/main.js";
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const currentOrder = JSON.parse(localStorage.getItem("currentOrder"));
-        const summaryContainer = document.querySelector(".summary-card");
-
-        if (currentOrder && summaryContainer) {
-          const tax = currentOrder.price * 0.08;
-          const total = currentOrder.price + tax;
-
-          summaryContainer.innerHTML = `
-            <img src="${currentOrder.image}" alt="${currentOrder.name}" class="summary-product-visual">
-            <h3 class="serif" style="margin-bottom: 2rem">Order Summary</h3>
-            <div class="summary-item">
-              <span>${currentOrder.name}</span>
-              <span>$${currentOrder.price.toLocaleString()}</span>
-            </div>
-            <div class="summary-item">
-              <span>Shipping</span>
-              <span>$0</span>
-            </div>
-            <div class="summary-item" style="border-bottom: none">
-              <span>Tax (8%)</span>
-              <span>$${tax.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-            </div>
-            <div class="summary-total">
-              <span>Total</span>
-              <span>$${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-            </div>
-          `;
-        } else if (!currentOrder) {
-          // If somehow they got here without an order, redirect home
-          window.location.href = "index.html";
-        }
-      });
-
-      document.getElementById("order-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        localStorage.removeItem("currentOrder"); // Clear order on success
-        document.getElementById("checkout-view").style.display = "none";
-        document.getElementById("success-view").style.display = "block";
-        showToast("Order placed successfully!", "success");
-      });
-    </script>
+    <script type="module" src="js/order.js"></script>
     <script type="module" src="js/main.js"></script>
   </body>
+</body>
 </html>
