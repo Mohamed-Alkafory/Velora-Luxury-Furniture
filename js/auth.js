@@ -1,5 +1,4 @@
 /**
- * Auth Logic for Velora Luxury Furniture
  * Uses localStorage for persistence
  */
 
