@@ -160,6 +160,7 @@
 
 .product-card {
   transition: var(--transition);
+  cursor: pointer;
 }
 
 .product-image {
@@ -182,24 +183,7 @@
   transform: scale(1.1);
 }
 
-.add-to-cart-btn {
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--on-surface);
-  color: #fff;
-  padding: 1rem 2rem;
-  width: 80%;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
 
-.product-card:hover .add-to-cart-btn {
-  bottom: 2rem;
-}
 
 .product-info {
   padding: 0 0.5rem;
@@ -218,10 +202,89 @@
   margin: 0.5rem 0;
 }
 
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .product-price {
   font-weight: 600;
   font-size: 1.2rem;
   color: var(--on-surface-variant);
+}
+
+/* Add to Cart initial button */
+.btn-add-cart-initial {
+  padding: 0.6rem 1.4rem;
+  background: var(--primary);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-add-cart-initial:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+/* Quantity controls row */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  line-height: 1;
+}
+
+.qty-btn:hover {
+  background: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+.qty-count {
+  font-weight: 700;
+  font-size: 1rem;
+  min-width: 1.5rem;
+  text-align: center;
+  color: var(--on-surface);
+}
+
+.qty-btn-delete {
+  width: auto;
+  border-radius: 50px;
+  padding: 0 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-left: 0.3rem;
+}
+
+.product-cart-controls {
+  flex-shrink: 0;
 }
 
 
