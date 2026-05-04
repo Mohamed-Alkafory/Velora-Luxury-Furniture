@@ -20,28 +20,59 @@ const initNavbar = async () => {
   const navActions = document.querySelector(".nav-actions");
   if (!navActions) return;
 
-  const user = await auth.getSessionUser();
-  if (user) {
-    navActions.textContent = "";
-    const firstName = user.name.split(" ")[0];
+  try {
+    const user = await auth.getSessionUser();
 
-    const greetingSpan = document.createElement("span");
-    greetingSpan.className = "user-greeting";
-    greetingSpan.textContent = "Hello, ";
+    let cartLink = navActions.querySelector(".nav-icon-link");
+    if (!cartLink) {
+      cartLink = document.createElement("a");
+      cartLink.href = "cart.html";
+      cartLink.className = "nav-icon-link";
+      cartLink.innerHTML = `
+        <i data-lucide="shopping-bag" class="nav-icon"></i>
+        <span class="cart-badge">0</span>
+      `;
+    }
 
-    const nameStrong = document.createElement("strong");
-    nameStrong.textContent = firstName;
-    greetingSpan.appendChild(nameStrong);
+    // Clear existing content but keep the cart icon
+    navActions.innerHTML = "";
+    navActions.appendChild(cartLink);
 
-    const logoutBtn = document.createElement("button");
-    logoutBtn.className = "btn btn-outline nav-btn";
-    logoutBtn.id = "logout-btn";
-    logoutBtn.textContent = "Logout";
-    logoutBtn.addEventListener("click", () => auth.logout());
+    if (user) {
+      const firstName = user.name.split(" ")[0];
+      const greetingSpan = document.createElement("span");
+      greetingSpan.className = "user-greeting";
+      greetingSpan.innerHTML = `Hello, <strong>${firstName}</strong>`;
 
-    navActions.append(greetingSpan, logoutBtn);
+      const logoutBtn = document.createElement("button");
+      logoutBtn.className = "btn btn-outline nav-btn";
+      logoutBtn.id = "logout-btn";
+      logoutBtn.textContent = "Logout";
+      logoutBtn.addEventListener("click", () => auth.logout());
+
+      navActions.append(greetingSpan, logoutBtn);
+    } else {
+      const signinBtn = document.createElement("a");
+      signinBtn.href = "signin.html";
+      signinBtn.className = "btn btn-outline nav-btn";
+      signinBtn.textContent = "Sign In";
+
+      const signupBtn = document.createElement("a");
+      signupBtn.href = "signup.html";
+      signupBtn.className = "btn btn-primary nav-btn";
+      signupBtn.textContent = "Join Us";
+
+      navActions.append(signinBtn, signupBtn);
+    }
+  } catch (error) {
+    console.error("Auth initialization failed:", error);
+  } finally {
+    navActions.classList.add("loaded");
+    updateCartBadge();
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
   }
-  navActions.classList.add("loaded");
 };
 
 // Toast system
@@ -164,40 +195,159 @@ const renderProducts = (productArray, containerId) => {
         <div class="product-card animate-fade-up" style="--delay: ${delay}s">
           <div class="product-image">
             <img src="${product.image}" alt="${product.name}" loading="lazy">
-            <button class="add-to-cart-btn order-now-btn" data-product-id="${product.id}">Order Now</button>
           </div>
           <div class="product-info">
             <span class="product-category">${product.category}</span>
             <h3 class="product-title">${product.name}</h3>
-            <p class="product-price">$${product.price.toLocaleString()}</p>
+            <div class="product-footer">
+              <p class="product-price">$${product.price.toLocaleString()}</p>
+              <div class="product-cart-controls" data-product-id="${product.id}">
+                ${getCartControls(product.id)}
+              </div>
+            </div>
           </div>
         </div>
       `;
     })
     .join("");
 
+  if (window.lucide) window.lucide.createIcons();
   scrollObserver.observe(container.querySelectorAll(".animate-fade-up"));
 
-  if (!hasOrderListener) {
+  if (!window.hasCartListener) {
     document.addEventListener("click", (e) => {
-      const btn = e.target.closest(".order-now-btn");
-      if (!btn) return;
-      const productId = parseInt(btn.dataset.productId);
-      const product = productsById.get(productId);
-      if (product) {
-        sessionStorage.setItem("currentOrder", JSON.stringify(product));
-        window.location.href = "order.html";
+      // Add to Cart
+      const addBtn = e.target.closest(".btn-add-cart-initial");
+      if (addBtn) {
+        const id = parseInt(addBtn.dataset.id);
+        const product = productsById.get(id);
+        if (product) {
+          addToCart(product);
+          refreshCardControls(id);
+        }
+      }
+      // Increase
+      const incBtn = e.target.closest(".btn-qty-increase");
+      if (incBtn) {
+        const id = parseInt(incBtn.dataset.id);
+        const product = productsById.get(id);
+        if (product) {
+          addToCart(product);
+          refreshCardControls(id);
+        }
+      }
+      // Decrease
+      const decBtn = e.target.closest(".btn-qty-decrease");
+      if (decBtn) {
+        const id = parseInt(decBtn.dataset.id);
+        decreaseCartItem(id);
+        refreshCardControls(id);
+      }
+      // Delete
+      const delBtn = e.target.closest(".btn-qty-delete");
+      if (delBtn) {
+        const id = parseInt(delBtn.dataset.id);
+        removeFromCart(id);
+        refreshCardControls(id);
       }
     });
-    hasOrderListener = true;
+    window.hasCartListener = true;
   }
 };
 
-document.addEventListener("DOMContentLoaded", async () => {
-  injectLogos();
-  await checkAuthProtection();
-  await initNavbar();
-  scrollObserver.init();
-});
+const getCartControls = (productId) => {
+  const cart = JSON.parse(localStorage.getItem("velora_cart") || "[]");
+  const item = cart.find((i) => i.id === productId);
+  if (item) {
+    return `
+      <div class="qty-controls">
+        <button class="qty-btn btn-qty-decrease" data-id="${productId}">−</button>
+        <span class="qty-count">${item.quantity}</span>
+        <button class="qty-btn btn-qty-increase" data-id="${productId}">+</button>
+        <button class="qty-btn qty-btn-delete btn-qty-delete" data-id="${productId}">Delete</button>
+      </div>`;
+  }
+  return `<button class="btn-add-cart-initial" data-id="${productId}">Add to Cart</button>`;
+};
 
-export { showToast, renderProducts };
+const refreshCardControls = (productId) => {
+  const ctrl = document.querySelector(
+    `.product-cart-controls[data-product-id="${productId}"]`,
+  );
+  if (ctrl) ctrl.innerHTML = getCartControls(productId);
+};
+
+const addToCart = (product, silent = false) => {
+  const cart = JSON.parse(localStorage.getItem("velora_cart") || "[]");
+  const existing = cart.find((item) => item.id === product.id);
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  localStorage.setItem("velora_cart", JSON.stringify(cart));
+  updateCartBadge();
+  if (!silent) showToast(`${product.name} added to cart`, "success");
+};
+
+const decreaseCartItem = (id) => {
+  let cart = JSON.parse(localStorage.getItem("velora_cart") || "[]");
+  const item = cart.find((i) => i.id === id);
+  if (!item) return;
+  if (item.quantity <= 1) {
+    cart = cart.filter((i) => i.id !== id);
+  } else {
+    item.quantity -= 1;
+  }
+  localStorage.setItem("velora_cart", JSON.stringify(cart));
+  updateCartBadge();
+};
+
+const removeFromCart = (id) => {
+  let cart = JSON.parse(localStorage.getItem("velora_cart") || "[]");
+  cart = cart.filter((i) => i.id !== id);
+  localStorage.setItem("velora_cart", JSON.stringify(cart));
+  updateCartBadge();
+};
+
+const updateCartBadge = () => {
+  const cart = JSON.parse(localStorage.getItem("velora_cart") || "[]");
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.querySelectorAll(".cart-badge").forEach((el) => {
+    el.textContent = count;
+    el.setAttribute("data-count", count);
+  });
+};
+
+const initApp = async () => {
+  try {
+    injectLogos();
+    await checkAuthProtection();
+    await initNavbar();
+    scrollObserver.init();
+    updateCartBadge();
+
+    // Initialize Lucide Icons
+    if (window.lucide) {
+      window.lucide.createIcons();
+    } else {
+      // Retry Lucide after a short delay if it's not loaded yet
+      setTimeout(() => {
+        if (window.lucide) window.lucide.createIcons();
+      }, 500);
+    }
+  } catch (err) {
+    console.error("App initialization failed:", err);
+  }
+};
+
+// Check if we are already in a DOMContentLoaded state
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initApp);
+} else {
+  initApp();
+}
+
+export { showToast, renderProducts, updateCartBadge };
