@@ -222,24 +222,6 @@ footer .logo {
   opacity: 1;
 }
 
-.nav-icon-link {
-  color: inherit;
-  opacity: 0.8;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-}
-
-.nav-icon-link:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-.nav-icon {
-  width: 20px;
-  height: 20px;
-}
-
 .btn {
   display: inline-block;
   padding: 1rem 2.5rem;
@@ -429,26 +411,6 @@ footer {
   margin-bottom: 4rem;
 }
 
-.footer-logo {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #fff;
-  letter-spacing: 0.3rem;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.footer-logo:hover {
-  color: var(--primary);
-}
-
-.footer-logo span {
-  color: var(--primary);
-}
-
 .footer-text {
   color: #a0a0a0;
   margin-bottom: 2rem;
@@ -527,12 +489,6 @@ footer {
 
 .nav-btn {
   padding: 0.5rem 1.5rem;
-}
-
-.footer-logo-mark {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 1.5rem;
 }
 
 .footer-newsletter-form {
