@@ -1,10 +1,10 @@
 import { showToast } from "./main.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const currentOrder = JSON.parse(localStorage.getItem("currentOrder"));
+  const currentOrder = JSON.parse(sessionStorage.getItem("currentOrder"));
   const summaryContainer = document.querySelector(".summary-card");
 
-  if (currentOrder && summaryContainer) {
+  if (currentOrder && currentOrder.name && summaryContainer) {
     const tax = currentOrder.price * 0.08;
     const total = currentOrder.price + tax;
 
@@ -28,16 +28,29 @@ document.addEventListener("DOMContentLoaded", () => {
         <span>$${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
       </div>
     `;
-  } else if (!currentOrder) {
-
-    window.location.href = "index.html";
+  } else if (summaryContainer) {
+    summaryContainer.innerHTML = `
+      <div class="empty-cart">
+        <h3 class="serif mb-2">Your Cart is Empty</h3>
+        <p class="mb-2">Choose a masterpiece from our collection to begin.</p>
+        <a href="index.html#featured" class="btn btn-primary w-full">Explore Collection</a>
+      </div>
+    `;
+    const orderForm = document.getElementById("order-form");
+    if (orderForm) {
+      orderForm.style.opacity = "0.5";
+      orderForm.style.pointerEvents = "none";
+    }
   }
 });
 
-document.getElementById("order-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  localStorage.removeItem("currentOrder");
-  document.getElementById("checkout-view").classList.add("no-display");
-  document.getElementById("success-view").classList.remove("no-display");
-  showToast("Order placed successfully!", "success");
-});
+const orderForm = document.getElementById("order-form");
+if (orderForm) {
+  orderForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    sessionStorage.removeItem("currentOrder");
+    document.getElementById("checkout-view").classList.add("no-display");
+    document.getElementById("success-view").classList.remove("no-display");
+    showToast("Order placed successfully!", "success");
+  });
+}

@@ -40,15 +40,25 @@
 
 
 .password-strength-container {
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.password-strength-container.visible {
+  opacity: 1;
+  height: auto;
 }
 
 .strength-bar {
-  height: 4px;
+  height: 6px;
   width: 100%;
   background: #eee;
-  border-radius: 2px;
+  border-radius: 3px;
   overflow: hidden;
+  margin-bottom: 0.5rem;
 }
 
 .strength-progress {
@@ -68,23 +78,23 @@
 
 .strength-0 .strength-progress {
   width: 5%;
-  background: #ddd;
+  background: #eee;
 }
 .strength-1 .strength-progress {
   width: 25%;
-  background: var(--error);
+  background: #ff4d4d;
 }
 .strength-2 .strength-progress {
   width: 50%;
-  background: #e67e22;
+  background: #ffa500;
 }
 .strength-3 .strength-progress {
   width: 75%;
-  background: #f1c40f;
+  background: #ffcc00;
 }
 .strength-4 .strength-progress {
   width: 100%;
-  background: var(--success);
+  background: #2ecc71;
 }
 
 .auth-footer {
