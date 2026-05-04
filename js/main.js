@@ -22,13 +22,22 @@ const initNavbar = async () => {
 
   const user = await auth.getCurrentUser();
   if (user) {
-    navActions.innerHTML = `
-      <span class="user-greeting">Hello, <strong>${user.name.split(" ")[0]}</strong></span>
-      <button class="btn btn-outline nav-btn" id="logout-btn">Logout</button>
-    `;
-    document
-      .getElementById("logout-btn")
-      ?.addEventListener("click", () => auth.logout());
+    navActions.textContent = "";
+
+    const greeting = document.createElement("span");
+    greeting.className = "user-greeting";
+    greeting.append("Hello, ");
+    const strong = document.createElement("strong");
+    strong.textContent = user.name.split(" ")[0];
+    greeting.appendChild(strong);
+
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "btn btn-outline nav-btn";
+    logoutBtn.id = "logout-btn";
+    logoutBtn.textContent = "Logout";
+    logoutBtn.addEventListener("click", () => auth.logout());
+
+    navActions.append(greeting, logoutBtn);
   }
 };
 
@@ -52,14 +61,31 @@ const showToast = (message, type = "success", subtitle = "") => {
 
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
-  toast.innerHTML = `
-    <span class="toast-icon">${TOAST_ICONS[type] ?? "i"}</span>
-    <div class="toast-body">
-      <span class="toast-message">${message}</span>
-      ${subtitle ? `<span class="toast-subtitle">${subtitle}</span>` : ""}
-    </div>
-    <button class="toast-close" aria-label="Dismiss">&times;</button>
-  `;
+
+  const icon = document.createElement("span");
+  icon.className = "toast-icon";
+  icon.textContent = TOAST_ICONS[type] ?? "i";
+
+  const body = document.createElement("div");
+  body.className = "toast-body";
+  const msg = document.createElement("span");
+  msg.className = "toast-message";
+  msg.textContent = message;
+  body.appendChild(msg);
+
+  if (subtitle) {
+    const sub = document.createElement("span");
+    sub.className = "toast-subtitle";
+    sub.textContent = subtitle;
+    body.appendChild(sub);
+  }
+
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "toast-close";
+  closeBtn.setAttribute("aria-label", "Dismiss");
+  closeBtn.innerHTML = "&times;";
+
+  toast.append(icon, body, closeBtn);
 
   const dismiss = () => {
     toast.classList.remove("show");
@@ -115,10 +141,13 @@ const scrollObserver = {
 };
 
 let hasOrderListener = false;
+let currentProducts = [];
 
 const renderProducts = (productArray, containerId) => {
   const container = document.getElementById(containerId);
   if (!container) return;
+
+  currentProducts = productArray;
 
   container.innerHTML = productArray
     .map((product, index) => {
@@ -145,7 +174,7 @@ const renderProducts = (productArray, containerId) => {
     document.addEventListener("click", (e) => {
       const btn = e.target.closest(".order-now-btn");
       if (!btn) return;
-      const product = productArray.find(
+      const product = currentProducts.find(
         (p) => p.id === parseInt(btn.dataset.productId),
       );
       if (product) {

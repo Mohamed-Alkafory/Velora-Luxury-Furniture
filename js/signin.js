@@ -26,11 +26,12 @@ signinForm.addEventListener("submit", async (e) => {
 
   const result = await auth.login(email, password);
 
+  const ALLOWED_REDIRECTS = ["index.html", "order.html", "contact.html"];
+
   if (result.success) {
     showToast(result.message, "success");
-    const redirect =
-      new URLSearchParams(window.location.search).get("redirect") ||
-      "index.html";
+    const raw = new URLSearchParams(window.location.search).get("redirect");
+    const redirect = ALLOWED_REDIRECTS.includes(raw) ? raw : "index.html";
     setTimeout(() => (window.location.href = redirect), 1200);
   } else {
     showToast(result.message, "error");
