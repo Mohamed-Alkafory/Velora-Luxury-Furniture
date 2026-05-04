@@ -214,6 +214,12 @@ footer .logo {
   display: flex;
   align-items: center;
   gap: 2rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.nav-actions.loaded {
+  opacity: 1;
 }
 
 .nav-icon-link {
@@ -578,4 +584,19 @@ footer {
 
 .border-none {
   border: none !important;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.empty-cart h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.empty-cart p {
+  color: var(--on-surface-variant);
+  font-size: 0.9rem;
 }

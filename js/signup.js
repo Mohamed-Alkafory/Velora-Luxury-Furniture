@@ -9,8 +9,16 @@ const STRENGTH_LABELS = ["Very Weak", "Weak", "Medium", "Strong", "Excellent"];
 
 if (passwordInput && strengthContainer) {
   passwordInput.addEventListener("input", () => {
-    const strength = auth.checkPasswordStrength(passwordInput.value);
-    strengthContainer.className = `password-strength-container strength-${strength}`;
+    const val = passwordInput.value;
+    const strength = auth.checkPasswordStrength(val);
+    
+    if (val.length > 0) {
+      strengthContainer.classList.add("visible");
+    } else {
+      strengthContainer.classList.remove("visible");
+    }
+    
+    strengthContainer.className = `password-strength-container ${val.length > 0 ? "visible" : ""} strength-${strength}`;
     strengthContainer.querySelector(".strength-text").textContent =
       `Strength: ${STRENGTH_LABELS[strength]}`;
   });
