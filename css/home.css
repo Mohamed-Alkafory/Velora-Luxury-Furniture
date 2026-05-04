@@ -26,6 +26,14 @@
 }
 
 .hero-label {
+  /*Moaz*/
+  font-weight: 600;
+   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.1);
+  padding: 4px 8px;
+  border-radius: 10px;
+  width: fit-content;
+
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -45,6 +53,11 @@
   margin-bottom: 3rem;
   opacity: 0.9;
   font-weight: 300;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.1);
+  padding: 4px 8px;
+  border-radius: 10px;
+  width: fit-content;
 }
 
 
