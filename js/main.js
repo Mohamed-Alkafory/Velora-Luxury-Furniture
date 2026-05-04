@@ -20,7 +20,7 @@ const initNavbar = async () => {
   const navActions = document.querySelector(".nav-actions");
   if (!navActions) return;
 
-  const user = await auth.getCurrentUser();
+  const user = await auth.getSessionUser();
   if (user) {
     navActions.textContent = "";
     const firstName = user.name.split(" ")[0];
@@ -41,6 +41,7 @@ const initNavbar = async () => {
 
     navActions.append(greetingSpan, logoutBtn);
   }
+  navActions.classList.add("loaded");
 };
 
 // Toast system
@@ -184,7 +185,7 @@ const renderProducts = (productArray, containerId) => {
       const productId = parseInt(btn.dataset.productId);
       const product = productsById.get(productId);
       if (product) {
-        localStorage.setItem("currentOrder", JSON.stringify(product));
+        sessionStorage.setItem("currentOrder", JSON.stringify(product));
         window.location.href = "order.html";
       }
     });

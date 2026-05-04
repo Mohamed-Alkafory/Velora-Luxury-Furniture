@@ -49,6 +49,16 @@ const auth = {
     };
   },
 
+  getSessionUser: async () => {
+    const { data } = await supabase.auth.getSession();
+    if (!data?.session?.user) return null;
+    const user = data.session.user;
+    return {
+      name: user.user_metadata?.name || "User",
+      email: user.email,
+    };
+  },
+
   checkPasswordStrength: (password) => {
     let strength = 0;
     if (password.length >= 8) strength++;
