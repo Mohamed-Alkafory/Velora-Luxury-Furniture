@@ -2,14 +2,15 @@
 
 <br/>
 
-```
+<pre>
  ██╗   ██╗███████╗██╗      ██████╗ ██████╗  █████╗
  ██║   ██║██╔════╝██║     ██╔═══██╗██╔══██╗██╔══██╗
  ██║   ██║█████╗  ██║     ██║   ██║██████╔╝███████║
  ╚██╗ ██╔╝██╔══╝  ██║     ██║   ██║██╔══██╗██╔══██║
   ╚████╔╝ ███████╗███████╗╚██████╔╝██║  ██║██║  ██║
    ╚═══╝  ╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-```
+</pre>
+
 
 ### *The Curated Atelier — Luxury Furniture Experience*
 
@@ -33,7 +34,6 @@
 
 ## 🗄️ Backend — Powered by Supabase
 
-[![Supabase](https://img.shields.io/badge/Supabase-Backend-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
 
 Velora's backend is fully powered by **[Supabase](https://supabase.com)** — an open-source Firebase alternative that provides a real PostgreSQL database, authentication, and instant APIs out of the box.
 
