@@ -2,22 +2,56 @@ import auth from "./auth.js";
 import { showToast } from "./main.js";
 
 const signinForm = document.getElementById("signin-form");
+if (!signinForm) throw new Error("signin-form not found");
 
-signinForm.addEventListener("submit", (e) => {
+const submitBtn = signinForm.querySelector("[type=submit]");
+
+const setLoading = (loading) => {
+  submitBtn.disabled = loading;
+  submitBtn.textContent = loading ? "Signing in..." : "Sign In";
+};
+
+signinForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const email = document.getElementById("email").value;
+
+  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
-  const result = auth.login(email, password);
+  if (!email || !password) {
+    showToast("Please fill in all fields", "error");
+    return;
+  }
+
+  setLoading(true);
+
+  const result = await auth.login(email, password);
+
   if (result.success) {
     showToast(result.message, "success");
+    const redirectParam =
+      new URLSearchParams(window.location.search).get("redirect") ||
+      "index.html";
 
-    // Get redirect parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const redirect = urlParams.get("redirect") || "index.html";
+    const allowedPaths = new Set([
+      "index.html",
+      "dashboard.html",
+      "order.html",
+    ]);
+
+    let redirect = "index.html";
+    if (
+      redirectParam.startsWith("/") &&
+      !redirectParam.includes(":") &&
+      !redirectParam.includes("//")
+    ) {
+      redirect = redirectParam;
+    } else if (allowedPaths.has(redirectParam)) {
+      redirect = redirectParam;
+    }
 
     setTimeout(() => (window.location.href = redirect), 1200);
   } else {
     showToast(result.message, "error");
+    setLoading(false);
   }
 });

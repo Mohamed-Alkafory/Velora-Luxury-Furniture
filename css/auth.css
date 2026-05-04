@@ -38,7 +38,7 @@
   font-size: 0.95rem;
 }
 
-/* Password Strength Bar */
+
 .password-strength-container {
   margin-top: 0.5rem;
 }
@@ -65,7 +65,7 @@
   letter-spacing: 0.5px;
 }
 
-/* Colors for strength */
+
 .strength-0 .strength-progress {
   width: 5%;
   background: #ddd;

@@ -1,43 +1,56 @@
 import auth from "./auth.js";
 import { showToast } from "./main.js";
 
+const signupForm = document.getElementById("signup-form");
 const passwordInput = document.getElementById("password");
 const strengthContainer = document.getElementById("strength-container");
-const signupForm = document.getElementById("signup-form");
 
-// Password strength listener
+const STRENGTH_LABELS = ["Very Weak", "Weak", "Medium", "Strong", "Excellent"];
+
 if (passwordInput && strengthContainer) {
-  passwordInput.addEventListener("input", (e) => {
-    const strength = auth.checkPasswordStrength(e.target.value);
+  passwordInput.addEventListener("input", () => {
+    const strength = auth.checkPasswordStrength(passwordInput.value);
     strengthContainer.className = `password-strength-container strength-${strength}`;
-
-    const texts = ["Very Weak", "Weak", "Medium", "Strong", "Excellent"];
-    strengthContainer.querySelector(".strength-text").innerText =
-      `Strength: ${texts[strength]}`;
+    strengthContainer.querySelector(".strength-text").textContent =
+      `Strength: ${STRENGTH_LABELS[strength]}`;
   });
 }
 
-// Form submission
 if (signupForm) {
-  signupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const userData = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      password: passwordInput.value,
-    };
+  const submitBtn = signupForm.querySelector("[type=submit]");
 
-    if (passwordInput.value.length < 8) {
+  const setLoading = (loading) => {
+    submitBtn.disabled = loading;
+    submitBtn.textContent = loading ? "Creating account..." : "Create Account";
+  };
+
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = passwordInput.value;
+
+    if (!name || !email || !password) {
+      showToast("Please fill in all fields", "error");
+      return;
+    }
+
+    if (password.length < 8) {
       showToast("Password must be at least 8 characters", "error");
       return;
     }
 
-    const result = auth.register(userData);
+    setLoading(true);
+
+    const result = await auth.register({ name, email, password });
+
     if (result.success) {
-      showToast(result.message, "success");
+      showToast(result.message, "success", "Redirecting to sign in...");
       setTimeout(() => (window.location.href = "signin.html"), 1500);
     } else {
       showToast(result.message, "error");
+      setLoading(false);
     }
   });
 }
