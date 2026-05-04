@@ -14,6 +14,7 @@
 ### *The Curated Atelier — Luxury Furniture Experience*
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-velora--luxury--furniture.vercel.app-c9a96e?style=for-the-badge)](https://velora-luxury-furniture.vercel.app)
+![Supabase](https://img.shields.io/badge/Supabase-Backend-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 ![HTML](https://img.shields.io/badge/HTML-30.6%25-e34f26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-36.1%25-1572b6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-33.3%25-f7df1e?style=for-the-badge&logo=javascript&logoColor=black)
