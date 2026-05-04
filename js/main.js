@@ -22,6 +22,7 @@ const initNavbar = async () => {
 
   const user = await auth.getCurrentUser();
   if (user) {
+    navActions.textContent = "";
     const firstName = user.name.split(" ")[0];
 
     const greetingSpan = document.createElement("span");
@@ -38,8 +39,7 @@ const initNavbar = async () => {
     logoutBtn.textContent = "Logout";
     logoutBtn.addEventListener("click", () => auth.logout());
 
-    navActions.appendChild(greetingSpan);
-    navActions.appendChild(logoutBtn);
+    navActions.append(greetingSpan, logoutBtn);
   }
 };
 
