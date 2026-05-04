@@ -8,31 +8,26 @@ const strengthContainer = document.getElementById("strength-container");
 const STRENGTH_LABELS = ["Very Weak", "Weak", "Medium", "Strong", "Excellent"];
 
 if (passwordInput && strengthContainer) {
-passwordInput.addEventListener("input", () => {
-  const value = passwordInput.value;
+  passwordInput.addEventListener("input", () => {
+    const value = passwordInput.value;
 
-  if (value.length > 0) {
-    strengthContainer.classList.add("show");
-  } else {
-    strengthContainer.classList.remove("show");
-  }
+    strengthContainer.classList.toggle("show", value.length > 0);
 
-  const strength = auth.checkPasswordStrength(value);
+    const strength = auth.checkPasswordStrength(value);
 
-  // شيل بس الكلاسات القديمة بتاعة strength
-  strengthContainer.classList.remove(
-    "strength-0",
-    "strength-1",
-    "strength-2",
-    "strength-3",
-    "strength-4"
-  );
+    strengthContainer.classList.remove(
+      "strength-0",
+      "strength-1",
+      "strength-2",
+      "strength-3",
+      "strength-4"
+    );
 
-  strengthContainer.classList.add(`strength-${strength}`);
+    strengthContainer.classList.add(`strength-${strength}`);
 
-  strengthContainer.querySelector(".strength-text").textContent =
-    `Strength: ${STRENGTH_LABELS[strength]}`;
-});
+    strengthContainer.querySelector(".strength-text").textContent =
+      `Strength: ${STRENGTH_LABELS[strength]}`;
+  });
 }
 
 if (signupForm) {

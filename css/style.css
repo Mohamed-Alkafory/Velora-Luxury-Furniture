@@ -134,6 +134,10 @@ img {
   transition: var(--transition);
 }
 
+.navbar.scrolled .logo-text {
+  color: #000;
+}
+
 footer .logo-text {
   color: #fff;
 }
