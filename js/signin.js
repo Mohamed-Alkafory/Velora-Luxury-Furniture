@@ -28,9 +28,27 @@ signinForm.addEventListener("submit", async (e) => {
 
   if (result.success) {
     showToast(result.message, "success");
-    const redirect =
+    const redirectParam =
       new URLSearchParams(window.location.search).get("redirect") ||
       "index.html";
+
+    const allowedPaths = new Set([
+      "index.html",
+      "dashboard.html",
+      "order.html",
+    ]);
+
+    let redirect = "index.html";
+    if (
+      redirectParam.startsWith("/") &&
+      !redirectParam.includes(":") &&
+      !redirectParam.includes("//")
+    ) {
+      redirect = redirectParam;
+    } else if (allowedPaths.has(redirectParam)) {
+      redirect = redirectParam;
+    }
+
     setTimeout(() => (window.location.href = redirect), 1200);
   } else {
     showToast(result.message, "error");

@@ -22,13 +22,24 @@ const initNavbar = async () => {
 
   const user = await auth.getCurrentUser();
   if (user) {
-    navActions.innerHTML = `
-      <span class="user-greeting">Hello, <strong>${user.name.split(" ")[0]}</strong></span>
-      <button class="btn btn-outline nav-btn" id="logout-btn">Logout</button>
-    `;
-    document
-      .getElementById("logout-btn")
-      ?.addEventListener("click", () => auth.logout());
+    const firstName = user.name.split(" ")[0];
+
+    const greetingSpan = document.createElement("span");
+    greetingSpan.className = "user-greeting";
+    greetingSpan.textContent = "Hello, ";
+
+    const nameStrong = document.createElement("strong");
+    nameStrong.textContent = firstName;
+    greetingSpan.appendChild(nameStrong);
+
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "btn btn-outline nav-btn";
+    logoutBtn.id = "logout-btn";
+    logoutBtn.textContent = "Logout";
+    logoutBtn.addEventListener("click", () => auth.logout());
+
+    navActions.appendChild(greetingSpan);
+    navActions.appendChild(logoutBtn);
   }
 };
 
@@ -52,14 +63,34 @@ const showToast = (message, type = "success", subtitle = "") => {
 
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
-  toast.innerHTML = `
-    <span class="toast-icon">${TOAST_ICONS[type] ?? "i"}</span>
-    <div class="toast-body">
-      <span class="toast-message">${message}</span>
-      ${subtitle ? `<span class="toast-subtitle">${subtitle}</span>` : ""}
-    </div>
-    <button class="toast-close" aria-label="Dismiss">&times;</button>
-  `;
+
+  const iconSpan = document.createElement("span");
+  iconSpan.className = "toast-icon";
+  iconSpan.textContent = TOAST_ICONS[type] ?? "i";
+
+  const bodyDiv = document.createElement("div");
+  bodyDiv.className = "toast-body";
+
+  const messageSpan = document.createElement("span");
+  messageSpan.className = "toast-message";
+  messageSpan.textContent = message;
+  bodyDiv.appendChild(messageSpan);
+
+  if (subtitle) {
+    const subtitleSpan = document.createElement("span");
+    subtitleSpan.className = "toast-subtitle";
+    subtitleSpan.textContent = subtitle;
+    bodyDiv.appendChild(subtitleSpan);
+  }
+
+  const closeButton = document.createElement("button");
+  closeButton.className = "toast-close";
+  closeButton.setAttribute("aria-label", "Dismiss");
+  closeButton.textContent = "×";
+
+  toast.appendChild(iconSpan);
+  toast.appendChild(bodyDiv);
+  toast.appendChild(closeButton);
 
   const dismiss = () => {
     toast.classList.remove("show");
@@ -68,7 +99,7 @@ const showToast = (message, type = "success", subtitle = "") => {
     });
   };
 
-  toast.querySelector(".toast-close").addEventListener("click", dismiss);
+  closeButton.addEventListener("click", dismiss);
 
   container.appendChild(toast);
   requestAnimationFrame(() =>
@@ -115,10 +146,15 @@ const scrollObserver = {
 };
 
 let hasOrderListener = false;
+const productsById = new Map();
 
 const renderProducts = (productArray, containerId) => {
   const container = document.getElementById(containerId);
   if (!container) return;
+
+  productArray.forEach((product) => {
+    productsById.set(product.id, product);
+  });
 
   container.innerHTML = productArray
     .map((product, index) => {
@@ -145,9 +181,8 @@ const renderProducts = (productArray, containerId) => {
     document.addEventListener("click", (e) => {
       const btn = e.target.closest(".order-now-btn");
       if (!btn) return;
-      const product = productArray.find(
-        (p) => p.id === parseInt(btn.dataset.productId),
-      );
+      const productId = parseInt(btn.dataset.productId);
+      const product = productsById.get(productId);
       if (product) {
         localStorage.setItem("currentOrder", JSON.stringify(product));
         window.location.href = "order.html";
