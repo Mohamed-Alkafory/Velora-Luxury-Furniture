@@ -29,14 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
   } else if (!currentOrder) {
-    // If somehow they got here without an order, redirect home
+
     window.location.href = "index.html";
   }
 });
 
 document.getElementById("order-form").addEventListener("submit", (e) => {
   e.preventDefault();
-  localStorage.removeItem("currentOrder"); // Clear order on success
+  localStorage.removeItem("currentOrder");
   document.getElementById("checkout-view").classList.add("no-display");
   document.getElementById("success-view").classList.remove("no-display");
   showToast("Order placed successfully!", "success");

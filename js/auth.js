@@ -1,65 +1,61 @@
-/**
- * Uses localStorage for persistence
- */
-
-const AUTH_KEY = "velora_users";
-const SESSION_KEY = "velora_current_user";
+import { supabase } from "./supabase.js";
 
 const auth = {
-  // Get all users from localStorage
-  getUsers: () => JSON.parse(localStorage.getItem(AUTH_KEY)) || [],
+  register: async ({ name, email, password }) => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { name } },
+    });
 
-  // Register a new user
-  register: (userData) => {
-    const users = auth.getUsers();
-    if (users.find((u) => u.email === userData.email)) {
-      return { success: false, message: "Email already registered" };
+    if (error) {
+      const msg = error.message.includes("already registered")
+        ? "This email is already in use"
+        : error.message;
+      return { success: false, message: msg };
     }
 
-    users.push(userData);
-    localStorage.setItem(AUTH_KEY, JSON.stringify(users));
-    return { success: true, message: "Registration successful" };
+    return { success: true, message: "Account created successfully" };
   },
 
-  // Login user
-  login: (email, password) => {
-    const users = auth.getUsers();
-    const user = users.find((u) => u.email === email && u.password === password);
+  login: async (email, password) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-    if (user) {
-      localStorage.setItem(
-        SESSION_KEY,
-        JSON.stringify({
-          name: user.name,
-          email: user.email,
-        }),
-      );
-      return { success: true, message: `Welcome back, ${user.name}` };
-    }
-    return { success: false, message: "Invalid email or password" };
+    if (error) return { success: false, message: "Invalid email or password" };
+
+    const name = data.user?.user_metadata?.name || "there";
+    return { success: true, message: `Welcome back, ${name.split(" ")[0]}` };
   },
 
-  // Logout
-  logout: () => {
-    localStorage.removeItem(SESSION_KEY);
+  logout: async () => {
+    await supabase.auth.signOut();
     window.location.href = "index.html";
   },
 
-  // Check if user is logged in
-  isLoggedIn: () => !!localStorage.getItem(SESSION_KEY),
+  isLoggedIn: async () => {
+    const { data } = await supabase.auth.getSession();
+    return !!data.session;
+  },
 
-  // Get current logged in user
-  getCurrentUser: () => JSON.parse(localStorage.getItem(SESSION_KEY)),
+  getCurrentUser: async () => {
+    const { data } = await supabase.auth.getUser();
+    if (!data?.user) return null;
+    return {
+      name: data.user.user_metadata?.name || "User",
+      email: data.user.email,
+    };
+  },
 
-  // Password strength evaluator
   checkPasswordStrength: (password) => {
     let strength = 0;
     if (password.length >= 8) strength++;
     if (/[A-Z]/.test(password)) strength++;
     if (/[0-9]/.test(password)) strength++;
     if (/[^A-Za-z0-9]/.test(password)) strength++;
-
-    return strength; // 0-4
+    return strength;
   },
 };
 

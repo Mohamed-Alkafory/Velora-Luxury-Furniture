@@ -1,4 +1,4 @@
-/* Pages Common Header */
+
 .page-hero {
   padding: 12rem 0 6rem;
   background: var(--surface-low);
@@ -17,7 +17,7 @@
   margin: 0 auto;
 }
 
-/* Contact Page Styles */
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -48,7 +48,7 @@
   font-family: var(--font-heading);
 }
 
-/* Order Page (Checkout) Styles */
+
 .checkout-container {
   padding: 8rem 0;
   max-width: 900px;

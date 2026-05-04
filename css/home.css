@@ -1,4 +1,4 @@
-/* Hero Section */
+
 .hero {
   height: 100vh;
   position: relative;
@@ -47,7 +47,7 @@
   font-weight: 300;
 }
 
-/* Category Grid */
+
 .categories {
   padding: 10rem 0;
 }
@@ -133,7 +133,7 @@
   font-weight: 600;
 }
 
-/* Product Section */
+
 .featured-products {
   padding: 5rem 0 10rem;
   background: var(--surface-low);
@@ -211,7 +211,7 @@
   color: var(--on-surface-variant);
 }
 
-/* Responsive */
+
 @media (max-width: 1024px) {
   .hero-title {
     font-size: 3.5rem;
