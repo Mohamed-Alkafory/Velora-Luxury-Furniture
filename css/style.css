@@ -119,6 +119,16 @@ img {
   transition: var(--transition);
 }
 
+footer .logo-text {
+  color: #fff;
+}
+
+footer .logo {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+
 .logo:hover .logo-text {
   color: var(--primary);
 }
